@@ -1,11 +1,18 @@
 '''
-Created on 2022-12-23
+Created on 2024-09-10
 @author: Sambit Giri
 Setup script
 '''
 
-from setuptools import setup, find_packages
-#from distutils.core import setup
+import setuptools
+from setuptools import Extension, setup, find_packages
+from Cython.Build import cythonize
+import numpy as np
+import os
+
+# Read requirements from requirements.txt
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
 
 
 setup(name='sarathi',
@@ -15,8 +22,7 @@ setup(name='sarathi',
       packages=find_packages("src"),
       package_dir={"": "src"},
       package_data={'sarathi': ['input_data/*']},
-      install_requires=['numpy', 'scipy', 'matplotlib',
-                        'pytest'],
+      install_requires=requirements,
       include_package_data=True,
       long_description=open('README.md').read(),
       long_description_content_type='text/markdown',
